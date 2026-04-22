@@ -1,5 +1,9 @@
 package cs665.common;
 
+import cs665.behavioral.Observer;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Course {
     private String code;
     private String title;
@@ -8,6 +12,8 @@ public class Course {
     private Faculty faculty;
     private Concentration concentration;
     private int enrollmentLimit;
+
+    private List<Observer> observers = new ArrayList<>();
 
     public Course(String code, String title, String description, String syllabus,
                   Faculty faculty, Concentration concentration, int enrollmentLimit) {
@@ -28,39 +34,17 @@ public class Course {
         return code;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getSyllabus() {
-        return syllabus;
-    }
-
-    public Faculty getFaculty() {
-        return faculty;
-    }
-
-    public Concentration getConcentration() {
-        return concentration;
-    }
-
     public int getEnrollmentLimit() {
         return enrollmentLimit;
     }
 
-    public String format() {
-        return "<div class='course'><h3>" + code + ": " + title + "</h3>"
-                + "<p>" + description + "</p>"
-                + "<p><strong>Syllabus:</strong> " + syllabus + "</p>"
-                + "</div>";
+    public void addObserver(Observer observer) {
+        observers.add(observer);
     }
 
-    @Override
-    public String toString() {
-        return code + " - " + title;
+    public void notifyObservers(String message) {
+        for (Observer observer : observers) {
+            observer.update(message);
+        }
     }
 }

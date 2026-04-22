@@ -1,13 +1,15 @@
 package cs665.common;
 
-public class Chairperson extends Faculty {
+import cs665.behavioral.Observer;
 
-    public Chairperson(String name, String email) {
-        super(name, email);
-    }
+public class Chairperson extends Faculty implements Observer {
 
     public Chairperson(String name) {
         super(name, name.toLowerCase().replace(" ", ".") + "@cs.edu");
+    }
+
+    public Chairperson(String name, String email) {
+        super(name, email);
     }
 
     @Override
@@ -15,7 +17,8 @@ public class Chairperson extends Faculty {
         return 1;
     }
 
-    public void receiveNotification(String message) {
-        System.out.println("[Chairperson Notification] " + getName() + ": " + message);
+    @Override
+    public void update(String message) {
+        System.out.println("[Chairperson Alert] " + getName() + ": " + message);
     }
 }
