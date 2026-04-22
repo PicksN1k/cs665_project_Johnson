@@ -10,6 +10,6 @@ public class Chairperson implements Observer {
 
     @Override
     public void update(String message) {
-        System.out.println("[Chairperson Alert] " + name + ": " + message);
+        System.out.println("[Chairperson Notification] " + name + ": " + message);
     }
 }

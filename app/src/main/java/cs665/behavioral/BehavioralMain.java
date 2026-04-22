@@ -1,5 +1,9 @@
 package cs665.behavioral;
 
+import cs665.common.Student;
+import cs665.common.Course;
+import cs665.common.CourseOffering;
+
 public class BehavioralMain {
 
     public static void main(String[] args) {
@@ -31,10 +35,10 @@ public class BehavioralMain {
 
         offering.enroll(s1);
         offering.enroll(s2);
-        offering.enroll(s3);   // goes to waitlist
+        offering.enroll(s3);
 
         System.out.println("\nBob drops the course...");
-        offering.drop(s2);     // Carol should be auto-enrolled
+        offering.drop(s2);
     }
 
     private static void runStrategyDemo() {
