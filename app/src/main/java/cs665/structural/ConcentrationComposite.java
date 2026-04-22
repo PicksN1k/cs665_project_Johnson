@@ -39,16 +39,24 @@ public class ConcentrationComposite implements ConcentrationComponent {
 
     @Override
     public String format() {
+        return formatWithIndent(0);
+    }
+
+    private String formatWithIndent(int level) {
         StringBuilder sb = new StringBuilder();
-        sb.append("<div class='concentration'>");
-        sb.append("<h2>").append(name).append("</h2>");
-        sb.append("<p>").append(description).append("</p>");
+        String indent = "  ".repeat(level);
+
+        sb.append(indent).append("Concentration: ").append(name).append("\n");
+        sb.append(indent).append("Description: ").append(description).append("\n");
 
         for (ConcentrationComponent child : children) {
-            sb.append(child.format());
+            if (child instanceof ConcentrationComposite composite) {
+                sb.append(composite.formatWithIndent(level + 1));
+            } else {
+                sb.append(indent).append("  ").append(child.format());
+            }
         }
 
-        sb.append("</div>");
         return sb.toString();
     }
 }

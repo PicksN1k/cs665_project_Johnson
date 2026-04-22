@@ -24,9 +24,7 @@ public class CourseLeaf implements ConcentrationComponent {
 
     @Override
     public String format() {
-        return "<div class='course'>"
-                + "<h3>" + code + ": " + title + "</h3>"
-                + "<p>" + description + "</p>"
-                + "</div>";
+        return "Course: " + code + " - " + title + "\n"
+             + "    Description: " + description + "\n";
     }
 }
